@@ -1,0 +1,16 @@
+{
+  "name": "algorithm-practice",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:amberjohnsonsmile/algorithm-practice.git",
+  "author": "Amber Johnson <amberjohnsonsmile@gmail.com>",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^10.2.0"
+  },
+  "scripts": {
+    "test": "mocha test"
+  },
+  "type": "module"
+}
