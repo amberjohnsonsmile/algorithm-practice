@@ -1,30 +1,20 @@
-// Write a function mergeRanges() that takes an array of multiple meeting time ranges and returns an array of condensed ranges
-export function mergeRanges(meetingRanges) {
-  const sortedMeetingRanges = meetingRanges.sort(
-    (a, b) => a.startTime - b.startTime
-  )
+export function mergeRanges(ranges) {
+  // Sort
+  const sortedRanges = ranges.sort((a, b) => a.startTime - b.startTime)
+  console.log('sortedRanges: ', sortedRanges)
 
-  const consolidatedRanges = [sortedMeetingRanges[0]]
+  // Initialize array
+  const consolidated = []
+  consolidated.push(sortedRanges[0])
 
-  for (let i = 0; i < sortedMeetingRanges.length; i++) {
-    const nextMeeting = sortedMeetingRanges[i]
-    const lastMergedMeeting = consolidatedRanges[consolidatedRanges.length - 1]
-
-    if (nextMeeting.endTime <= lastMergedMeeting.endTime) {
-      continue
-    } else if (
-      (nextMeeting.startTime <= lastMergedMeeting.endTime) &
-      (nextMeeting.endTime >= lastMergedMeeting.endTime)
-    ) {
-      consolidatedRanges.pop()
-      consolidatedRanges.push({
-        startTime: lastMergedMeeting.startTime,
-        endTime: nextMeeting.endTime
-      })
-    } else {
-      consolidatedRanges.push(nextMeeting)
+  // Compare and add to new array
+  sortedRanges.forEach((range) => {
+    if (range.startTime > consolidated[consolidated.length - 1].endTime) {
+      consolidated.push(range)
+    } else if (range.endTime > consolidated[consolidated.length - 1].endTime) {
+      consolidated[consolidated.length - 1].endTime = range.endTime
     }
-  }
+  })
 
-  return consolidatedRanges
+  return consolidated
 }
