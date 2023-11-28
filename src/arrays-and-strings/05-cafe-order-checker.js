@@ -1,5 +1,4 @@
 export function ordersAreCorrect(takeOutOrders, dineInOrders, whenServed) {
-  let i = 0
   let j = 0
   let k = 0
 
