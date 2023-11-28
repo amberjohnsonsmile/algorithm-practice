@@ -1,4 +1,4 @@
-import { mergeRanges } from '../src/01-merging-meeting-times.js'
+import { mergeRanges } from '../../src/arrays-and-strings/01-merging-meeting-times.js'
 import * as assert from 'assert'
 
 describe('mergeRanges', function () {

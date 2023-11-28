@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { reverseStringInPlace } from '../src/02-reverse-string-in-place.js'
+import { reverseStringInPlace } from '../../src/arrays-and-strings/02-reverse-string-in-place.js'
 
 describe('reverseStringInPlace', function () {
   it('returns array of characters in the opposite order', () => {
