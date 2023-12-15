@@ -23,5 +23,12 @@ describe('in place shuffle', function () {
         assert.equal(result.includes(int), true)
       })
     })
+
+    it('throws an error if there are fewer that two items', function () {
+      const ints = [3]
+      assert.throws(() => {
+        shuffleInPlace(ints)
+      }, Error)
+    })
   })
 })
