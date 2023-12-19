@@ -8,7 +8,7 @@ export function findRotationPoint(words) {
     if (words[half] < words[half - 1] && words[half] < words[half + 1]) {
       return half
     } else if (words[half] < words[0]) {
-      ceilingIndex = Math.floor(half / 2)
+      ceilingIndex = half
     } else {
       floorIndex = half
     }
