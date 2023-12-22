@@ -1,8 +1,6 @@
 import * as assert from 'assert'
-import {
-  BinaryTreeNode,
-  treeIsSuperBalanced
-} from '../../src/trees-and-graphs/16-balanced-binary-tree.js'
+import { treeIsSuperBalanced } from '../../src/trees-and-graphs/16-balanced-binary-tree.js'
+import { BinaryTreeNode } from '../../src/trees-and-graphs/binary-tree-node.js'
 
 describe('treeIsSuperBalanced', function () {
   it('returns true when the diff between any two node depths is 1 or less', function () {
