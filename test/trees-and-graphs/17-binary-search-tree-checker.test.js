@@ -5,19 +5,14 @@ import { isValidBinarySearchTree } from '../../src/trees-and-graphs/17-binary-se
 describe('isValidBinarySearchTree', function () {
   it('returns true for a tree with correct nodes', function () {
     const baseNode = new BinaryTreeNode(10)
-    const left1 = new BinaryTreeNode(5)
-    const right1 = new BinaryTreeNode(15)
-    const left2 = new BinaryTreeNode(4)
-    const right2 = new BinaryTreeNode(6)
-    const left3 = new BinaryTreeNode(14)
-    const right3 = new BinaryTreeNode(16)
 
-    left1.left = left2
-    left1.right = right2
-    right1.left = left3
-    right1.right = right3
-    baseNode.left = left1
-    baseNode.right = right1
+    baseNode.insertLeft(5)
+    baseNode.left.insertLeft(4)
+    baseNode.left.insertRight(6)
+
+    baseNode.insertRight(15)
+    baseNode.right.insertLeft(14)
+    baseNode.right.insertRight(16)
 
     const result = isValidBinarySearchTree(baseNode)
     assert.equal(result, true)
@@ -25,8 +20,8 @@ describe('isValidBinarySearchTree', function () {
 
   it('returns false for a tree with one incorrect node', function () {
     const baseNode = new BinaryTreeNode(10)
-    baseNode.left = new BinaryTreeNode(15)
-    baseNode.right = new BinaryTreeNode(20)
+    baseNode.insertLeft(15)
+    baseNode.insertRight(20)
 
     const result = isValidBinarySearchTree(baseNode)
     assert.equal(result, false)
@@ -34,19 +29,13 @@ describe('isValidBinarySearchTree', function () {
 
   it('returns false for a tree with multiple incorrect nodes', function () {
     const baseNode = new BinaryTreeNode(10)
-    const left1 = new BinaryTreeNode(5)
-    const right1 = new BinaryTreeNode(15)
-    const left2 = new BinaryTreeNode(4)
-    const right2 = new BinaryTreeNode(6)
-    const left3 = new BinaryTreeNode(16)
-    const right3 = new BinaryTreeNode(14)
+    baseNode.insertLeft(5)
+    baseNode.left.insertLeft(4)
+    baseNode.left.insertRight(6)
 
-    left1.left = left2
-    left1.right = right2
-    right1.left = left3
-    right1.right = right3
-    baseNode.left = left1
-    baseNode.right = right1
+    baseNode.insertRight(15)
+    baseNode.right.insertLeft(16)
+    baseNode.right.insertRight(14)
 
     const result = isValidBinarySearchTree(baseNode)
     assert.equal(result, false)
@@ -54,20 +43,13 @@ describe('isValidBinarySearchTree', function () {
 
   it('returns false for a tree with an incorrect distant ancestor', function () {
     const baseNode = new BinaryTreeNode(10)
-    const left1 = new BinaryTreeNode(5)
-    const right1 = new BinaryTreeNode(15)
-    const left2 = new BinaryTreeNode(4)
-    const right2 = new BinaryTreeNode(6)
-    // This is right of the 10 so it should fail
-    const left3 = new BinaryTreeNode(9)
-    const right3 = new BinaryTreeNode(16)
+    baseNode.insertLeft(5)
+    baseNode.left.insertLeft(4)
+    baseNode.left.insertRight(6)
 
-    left1.left = left2
-    left1.right = right2
-    right1.left = left3
-    right1.right = right3
-    baseNode.left = left1
-    baseNode.right = right1
+    baseNode.insertRight(15)
+    baseNode.right.insertLeft(9)
+    baseNode.right.insertRight(16)
 
     const result = isValidBinarySearchTree(baseNode)
     assert.equal(result, false)
