@@ -15,5 +15,5 @@ export function getSecondLargestItem(baseNode) {
     node = node.right
   }
 
-  return Math.max(highestNode.ancestor, highestNode.child)
+  return highestNode.child ? highestNode.child : highestNode.ancestor
 }

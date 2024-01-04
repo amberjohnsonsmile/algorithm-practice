@@ -56,4 +56,18 @@ describe('getSecondLargestItem', function () {
     const result = getSecondLargestItem(baseNode)
     assert.equal(result, 16)
   })
+
+  it('returns correct value with negative numbers', function () {
+    const baseNode = new BinaryTreeNode(-10)
+    baseNode.insertLeft(-15)
+    baseNode.left.insertLeft(-20)
+    baseNode.left.insertRight(-14)
+
+    baseNode.insertRight(-5)
+    baseNode.right.insertLeft(-6)
+    baseNode.right.insertRight(-4)
+
+    const result = getSecondLargestItem(baseNode)
+    assert.equal(result, -5)
+  })
 })
