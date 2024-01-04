@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { BinaryTreeNode } from '../../src/trees-and-graphs/binary-tree-node.js'
+import { BinaryTreeNode } from './binary-tree-node.js'
 import { isValidBinarySearchTree } from '../../src/trees-and-graphs/17-binary-search-tree-checker.js'
 
 describe('isValidBinarySearchTree', function () {
