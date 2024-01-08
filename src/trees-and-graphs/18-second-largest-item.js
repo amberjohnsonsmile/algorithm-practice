@@ -1,19 +1,30 @@
-// Returns the second largest item in a valid binary search tree
 export function getSecondLargestItem(baseNode) {
-  if (!baseNode.right) {
-    return baseNode.value
+  if (!baseNode || (!baseNode.left && !baseNode.right)) {
+    throw new Error('The binary search tree needs at least 2 nodes')
   }
 
-  let highestNode
   let node = baseNode
-  while (node.right) {
-    highestNode = {
-      value: node.right.value,
-      ancestor: node.value,
-      child: node.right.left ? node.right.left.value : null
+  while (node) {
+    // The largest is the baseNode and it has a left subtree
+    if (node.left && !node.right) {
+      return getLargestItem(node.left)
+    }
+
+    // The largest is a childless child of the baseNode
+    if (node.right && !node.right.left && !node.right.right) {
+      return node.value
+    }
+
+    node = node.right
+  }
+}
+
+function getLargestItem(baseNode) {
+  let node = baseNode
+  while (node) {
+    if (!node.right) {
+      return node.value
     }
     node = node.right
   }
-
-  return highestNode.child ? highestNode.child : highestNode.ancestor
 }
