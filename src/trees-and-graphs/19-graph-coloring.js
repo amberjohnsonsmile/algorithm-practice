@@ -1,25 +1,21 @@
+// Color a graph using maxDegree + 1 colors
 export function colorGraph(graph, colors) {
   graph.forEach((node) => {
     if (node.neighbors.has(node)) {
-      throw new Error(
-        `Legal coloring impossible for node with loop: ${node.label}`
-      )
+      throw new Error('Graph must not have a loop')
     }
 
-    // Get the node's neighbors' colors, as a set so we
-    // can check if a color is illegal in constant time
+    // Add illegal colors as a set
     const illegalColors = new Set()
-
     node.neighbors.forEach((neighbor) => {
       if (neighbor.color !== null) {
         illegalColors.add(neighbor.color)
       }
     })
 
-    // Assign the first legal color
+    // Iterate through colors and set as long as it's not illegal
     for (let i = 0; i < colors.length; i++) {
       const color = colors[i]
-
       if (!illegalColors.has(color)) {
         node.color = color
         break
@@ -28,30 +24,3 @@ export function colorGraph(graph, colors) {
   })
   return graph
 }
-
-// // Color a graph using maxDegree + 1 colors
-// export function colorGraph(graphNode, maxDegree) {
-//   const nodes = [graphNode]
-//   let currentColor = 0
-
-//   while (nodes.length) {
-//     const currentNode = nodes.shift()
-//     currentNode.color = currentColor
-//     currentColor = getNextColor(currentColor, maxDegree)
-
-//     currentNode.neighbors.forEach((neighbor) => {
-//       if (!neighbor.color) {
-//         nodes.push(neighbor)
-//       }
-//     })
-//   }
-//   return graphNode
-// }
-
-// function getNextColor(color, maxDegree) {
-//   if (color + 1 > maxDegree + 1) {
-//     return 0
-//   } else {
-//     return color + 1
-//   }
-// }

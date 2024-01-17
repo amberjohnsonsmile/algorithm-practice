@@ -8,16 +8,21 @@ describe('colorGraph', function () {
     const b = new GraphNode('b')
     const c = new GraphNode('c')
 
+    // a and b are connected
     a.neighbors.add(b)
     b.neighbors.add(a)
+    // b and c are connected
     c.neighbors.add(b)
     b.neighbors.add(c)
 
     const graph = [a, b, c]
     const result = colorGraph(graph, ['red', 'green', 'blue'])
-    assert.notEqual(result[0].color, result[1].color)
-    assert.notEqual(result[0].color, result[2].color)
-    assert.notEqual(result[1].color, result[2].color)
-    assert.notEqual(result[3].color, result[3].color)
+
+    const aColor = result[0].color
+    const bColor = result[1].color
+    const cColor = result[2].color
+
+    assert.notEqual(aColor, bColor)
+    assert.notEqual(bColor, cColor)
   })
 })
